@@ -25,11 +25,11 @@ public class ProductController {
 
     @PutMapping("/products")
     public ResponseEntity update(@RequestBody Product product) {
-        if(productService.getByIdProduct(product.getId()) != null){
+
+        if(productService.getByIdProduct(product.getId()) != null)
             return new ResponseEntity<Product>(productService.updateProduct(product), HttpStatus.OK);
-        } else {
+        else
             return ResponseEntity.status(HttpStatus.OK).body("No found products to update");
-        }
 
     }
 
