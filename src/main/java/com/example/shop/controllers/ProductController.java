@@ -28,7 +28,7 @@ public class ProductController {
         if(productService.getByIdProduct(product.getId()) != null){
             return new ResponseEntity<Product>(productService.updateProduct(product), HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.OK).body("Not found products to update");
+            return ResponseEntity.status(HttpStatus.OK).body("No found products to update");
         }
 
     }
@@ -41,7 +41,7 @@ public class ProductController {
     @GetMapping("/products")
     public ResponseEntity getAll() {
         if(productService.getAllProducts().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body("Not found products");
+            return ResponseEntity.status(HttpStatus.OK).body("No found products");
         }
         else{
             return  new ResponseEntity<List<Product>>(this.productService.getAllProducts(), HttpStatus.OK);
