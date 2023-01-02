@@ -19,8 +19,7 @@ public class Product {
     @Id
     @Column(name = "id", nullable = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+    Integer id;
 
     String name;
 

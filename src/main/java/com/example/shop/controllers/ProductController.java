@@ -24,8 +24,13 @@ public class ProductController {
     }
 
     @PutMapping("/products")
-    public Product update(@RequestBody Product product) {
-        return productService.updateProduct(product);
+    public ResponseEntity update(@RequestBody Product product) {
+        if(productService.getByIdProduct(product.getId()) != null){
+            return new ResponseEntity<Product>(productService.updateProduct(product), HttpStatus.OK);
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body("Not found products to update");
+        }
+
     }
 
     @GetMapping("/products/{id}")
