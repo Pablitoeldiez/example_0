@@ -1,28 +1,32 @@
 package com.example.shop.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicInsert
+@Entity
+@Table(name="product")
+
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    UUID id;
-    @Column(name="name")
+    @Column(name = "id", nullable = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+
     String name;
-    @Column(name="description")
+
     String description;
-    @Column(name="price")
+
     float price;
 
+    boolean isActive = true;
 }

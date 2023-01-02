@@ -3,6 +3,7 @@ package com.example.shop.services;
 import com.example.shop.models.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IProductService {
     Product saveProduct(Product product);
