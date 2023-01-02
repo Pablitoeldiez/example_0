@@ -34,20 +34,21 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getById(@PathVariable Integer id) {
-        return productService.getByIdProduct(id);
+    public ResponseEntity getById(@PathVariable Integer id) {
+        Product product = productService.getByIdProduct(id);
+        if(product != null)
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        else
+            return ResponseEntity.status(HttpStatus.OK).body("No found product");
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/")
     public ResponseEntity getAll() {
-        if(productService.getAllProducts().isEmpty()){
+        if(productService.getAllProducts().isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body("No found products");
-        }
-        else{
+        else
             return  new ResponseEntity<List<Product>>(this.productService.getAllProducts(), HttpStatus.OK);
-        }
     }
-
     @DeleteMapping("/products/{id}")
     public void delete(@PathVariable Integer id) {
         productService.deleteProduct(id);
