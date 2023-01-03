@@ -14,7 +14,7 @@ import org.hibernate.annotations.DynamicInsert;
 @Table(name="category")
 public class Category {
     @Id
-    @Column
+    @Column(name="id", nullable = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 

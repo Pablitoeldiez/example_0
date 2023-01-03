@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -18,9 +17,12 @@ public class ProductController {
     IProductService productService;
 
     @PostMapping("/products")
-    public Product save(@RequestBody Product product) {
-
-        return productService.saveProduct(product);
+    public ResponseEntity save(@RequestBody Product product) {
+        Product productResponse = productService.saveProduct(product);
+        if(productResponse != null)
+            return new ResponseEntity<Product>(product, HttpStatus.CREATED) ;
+        else
+            return  ResponseEntity.status(HttpStatus.CONFLICT).body("Error to create PRODUCT");
     }
 
     @PutMapping("/products")
