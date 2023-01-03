@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin("http://localhost:4200/")
 public class ProductController {
     @Autowired
     IProductService productService;
@@ -42,7 +42,7 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.OK).body("No found product");
     }
 
-    @GetMapping("/products/")
+    @GetMapping("/products")
     public ResponseEntity getAll() {
         if(productService.getAllProducts().isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body("No found products");
